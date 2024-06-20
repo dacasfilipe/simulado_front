@@ -1,8 +1,18 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
 
 const MenuSuperior = () => {
+  const [nome, setNome] = useState(''); // State to store the retrieved name
+
+  useEffect(() => {
+    const storedNome = localStorage.getItem('nome'); // Get the name from localStorage
+    if (storedNome) {
+      setNome(storedNome); // Update the state with the retrieved name
+    }
+  }, []); // Run only once on component mount
   const menuStyle = {
     width: '100%', // Ocupar toda a largura
     position: 'fixed', // Posição fixa
@@ -12,7 +22,7 @@ const MenuSuperior = () => {
   return (
     <nav style={menuStyle} className="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
       <div className="container">
-        <Link to="/" className="navbar-brand">Controle de Automóveis</Link>
+        <Link to="/" className="navbar-brand">{nome}</Link>
         <ul className="navbar-nav">
           <li className="nav-item">
             <Link to="/automoveis" className="nav-link">Incluir Automóvel</Link>
@@ -26,7 +36,7 @@ const MenuSuperior = () => {
           </li>
           
         </ul>
-        <a class="btn btn-light" href="/login" role="button">Sair</a>
+        <a className="btn btn-light" href="/login" role="button">Sair</a>
       </div>
     </nav>
   );

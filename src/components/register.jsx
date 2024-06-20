@@ -1,11 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import for programmatic navigation
+
 
 function Register() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+
+  const navigate = useNavigate(); // Hook for programmatic navigation
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,6 +17,8 @@ function Register() {
       const res = await axios.post('http://localhost:3001/login/register', { nome, email, senha });
       console.log(res.data);
       alert('Usuário registrado com sucesso!');
+      navigate('/login'); // Redirect to login route after successful registration
+
     } catch (err) {
       console.error(err);
       alert('Erro ao registrar usuário.');

@@ -8,7 +8,7 @@ const Cadastrar_Automovel = () => {
 
   const salvar = async (campos) => {
     try {
-      const response = await api.post("automoveis", campos);
+      const response = await api.post("/automoveis", campos);
       setAviso(`Automovel cadastrado com sucesso!"`);
       reset();
     } catch (error) {
@@ -33,14 +33,14 @@ const Cadastrar_Automovel = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="concessionarias_codigo">Concessionária Id</label>
+            <label htmlFor="concessionarias_id">Concessionária Id</label>
             <input
-              type="text"
+              type="number"
               className="form-control"
-              id="concessionarias_codigo"
+              id="concessionarias_id"
               required
               autoFocus
-              {...register("concessionarias_codigo")}
+              {...register("concessionarias_id")}
             />
           </div>
           <input

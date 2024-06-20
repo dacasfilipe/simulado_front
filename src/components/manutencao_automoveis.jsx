@@ -67,9 +67,9 @@ const alterar = async (id,nome) => {
         await api.put(`automoveis/${id}`,{nome: novoNome});
         
         const AutomoveisAtualizados = [...automoveis];
-        const indiceAutomoveis = AutomoveisAtualizados.find(automoveis => automoveis.id === id);
-        console.log("indice automovel:"+indiceAutomoveis);
-        AutomoveisAtualizados[indiceAutomoveis.id].nome = novoNome;
+        const index = AutomoveisAtualizados.findIndex(automovel => automovel.id === id);
+        console.log("indice automovel:"+index);
+        AutomoveisAtualizados[index].nome = novoNome;
         setAutomoveis(AutomoveisAtualizados);
         obterLista();
     

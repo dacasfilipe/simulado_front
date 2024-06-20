@@ -23,8 +23,9 @@ const FormularioLogin = () => {
 
         if (response.ok) {
             localStorage.setItem('token', data.token); // Armazenando o token
-            localStorage.setItem('nome', data.nome);
-            console.log(data.nome)
+            localStorage.setItem('nome', data.funcionario.nome);
+            localStorage.setItem('id', data.funcionario.id);
+            console.log(data.funcionario.nome)
             navigate('/home');  // Redireciona para /home
         } else {
             alert('Falha no login!');
@@ -55,7 +56,7 @@ const FormularioLogin = () => {
                     <label htmlFor="email">Email:</label>
                     <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <label htmlFor="senha">Senha:</label>
-                    <input type="senha" id="senha" name="senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
+                    <input type="password" id="senha" name="senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
                     <button type="submit">Entrar</button>
                 </form>
                 <p>Ainda não tem conta? <Link to="/register">Registre-se</Link></p>
