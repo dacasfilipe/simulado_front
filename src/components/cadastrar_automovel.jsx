@@ -1,12 +1,21 @@
 import { useForm } from "react-hook-form";
 import { api } from "../config_axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Cadastrar_Automovel = () => {
   const { register, handleSubmit, reset} = useForm();
   const [aviso, setAviso] = useState("");
+  const [concessionarias_id, setConcessionarias_id] = useState(''); // State to store the retrieved name
+  
+  useEffect(() => {
+    const storedId = localStorage.getItem('concessionarias_id'); // Get the name from localStorage
+    console.log(storedId);
+    if (storedId) {
+      setConcessionarias_id(storedId); // Update the state with the retrieved name
+    }
+  }, []); // Run only once on component mount
 
-  const salvar = async (campos) => {
+  const salvar = async (campos) => {    
     try {
       const response = await api.post("/automoveis", campos);
       setAviso(`Automovel cadastrado com sucesso!"`);
@@ -38,7 +47,7 @@ const Cadastrar_Automovel = () => {
               type="number"
               className="form-control"
               id="concessionarias_id"
-              required
+              value = {concessionarias_id}
               autoFocus
               {...register("concessionarias_id")}
             />

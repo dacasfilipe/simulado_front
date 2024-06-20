@@ -25,7 +25,8 @@ const FormularioLogin = () => {
             localStorage.setItem('token', data.token); // Armazenando o token
             localStorage.setItem('nome', data.funcionario.nome);
             localStorage.setItem('id', data.funcionario.id);
-            console.log(data.funcionario.nome)
+            localStorage.setItem('concessionarias_id', data.funcionario.concessionarias_id);
+            console.log(data)
             navigate('/home');  // Redireciona para /home
         } else {
             alert('Falha no login!');
