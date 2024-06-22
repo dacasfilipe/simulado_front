@@ -2,7 +2,7 @@ import {useForm} from "react-hook-form";
 import { useState, useEffect } from "react";
 import { api } from "../config_axios";
 import ItemLista from "./ItemLista";  
-import MenuSuperior from "./MenuSuperior";
+
 
 const Manutencao_Automoveis = () => {
     //servem para manipular os dados do formulário
@@ -12,7 +12,7 @@ const Manutencao_Automoveis = () => {
 
     const obterLista = async () => {
         try {
-            const lista = await api.get("automoveis");
+            const lista = await api.get(`automoveis/${localStorage.getItem('concessionarias_id')}`);
             setAutomoveis(lista.data.automoveis);
             console.log(lista)
             
