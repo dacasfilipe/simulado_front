@@ -9,8 +9,9 @@ const Manutencao_Automoveis = () => {
     const {register, handleSubmit, reset} = useForm();
     //guardar e setar as informações do objeto
     const [automoveis, setAutomoveis] = useState([]);
+    const [id, setId] = useState(''); // State to store the retrieved name
 
-    const obterLista = async () => {
+  const obterLista = async () => {
         try {
             const lista = await api.get(`automoveis/${localStorage.getItem('concessionarias_id')}`);
             setAutomoveis(lista.data.automoveis);
@@ -25,6 +26,9 @@ const Manutencao_Automoveis = () => {
 // for renderizado
 useEffect(() => {
     obterLista();
+    const storedId = localStorage.getItem('concessionarias_id'); // Get the name from localStorage
+    console.log(storedId);
+    setId(storedId);
 },[]);
 
 const filtrarLista = async (campos) => {
